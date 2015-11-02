@@ -52,13 +52,11 @@
       {% csrf_token %}
       <input type = "submit" value = "Login" name = "login" class="btn btn-primary btn-lg">
     </form>
-    <a href = "/shopping/signup">Register</a><br>
     <error>{{ error }}</error>
     </div>
 
-        <logo>COST</logo><br>
-        <tagline><b>C</b>ollaborative <b>O</b>nline <b>S</b>hopping <b>T</b>ool</tagline><br>
-        <tagline>The social network of shopaholics</tagline>
+        <logo>Targeted Alerts</logo><br>
+        <tagline>Alerts for certain demographics based on weather prediction</tagline><br>
 
     </center>
   </body>

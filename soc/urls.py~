@@ -8,4 +8,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'soc.alerts.views.home'),
+    url(r'^home/', 'soc.alerts.views.home'),
 )

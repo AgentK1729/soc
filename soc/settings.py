@@ -88,6 +88,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'soc/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'soc/alerts/static'),)
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'soc/templates'),)
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'soc/alerts/templates'),)

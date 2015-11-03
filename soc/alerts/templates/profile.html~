@@ -48,11 +48,11 @@
                 width : 200px;
             }
             
-            select {coorl:black}
+            select {color:black; font-size:4vh}
 
             a,text { font-size : 4vh; color : #FF9900;}
             
-            option {font-size:3vh; color:black;}
+            option {font-size:44vh;color:black;}
 
 
             lesson {color : #FF6600;}

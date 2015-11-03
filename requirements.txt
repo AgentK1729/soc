@@ -6,4 +6,4 @@ psycopg2==2.5.1
 static==0.4
 wsgiref==0.1.2
 djangorestframework==3.2.4
-urllib2==2.1
+urllib2

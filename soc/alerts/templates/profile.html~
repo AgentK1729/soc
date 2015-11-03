@@ -1,0 +1,81 @@
+<html>
+	<head><title>User Profile</title>
+
+        <link rel="stylesheet" href="http://crowdcoach.pythonanywhere.com/static/style.css">
+	    <style>
+
+			table, td, tr
+			{
+				border: 1px solid white;
+				border-collapse: collapse;
+				
+			}
+			
+			td
+			{
+				font-size : 4vh;
+			}
+
+            header1
+            {
+                font-size : 8vh;
+                color : white;
+            }
+
+            header2
+            {
+                font-size : 6vh;
+                color : white;
+            }
+
+            input[type="text"]
+            {
+                width : 200px;
+                height : 6vh;
+                font-size : 3vh;
+            }
+
+            img
+            {
+                height : 200px;
+                width : 200px;
+            }
+
+            a,text { font-size : 4vh; color : #FF9900;}
+
+
+            lesson {color : #FF6600;}
+
+	    </style>
+
+	</head>
+	<body>
+		<center>
+		    <header1>Welcome {{ user }}!</header1>
+		</center>
+		<div style = "width:50%;float:left">
+				<text>Current AQI Value: </text>
+					<table>
+						{% for param, aqi in aqis.items %}
+							<tr>
+								<td>{{ param }}</td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td>{{ aqi }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+		</div>
+		<div style = "width:50%;float:right">
+				<text>Weather details:</text>
+					<table>
+						{% for key, val in weather %}
+							<tr>
+								<td>{{ key }}</td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td>{{ val }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+		</div>
+	</body>
+</html>

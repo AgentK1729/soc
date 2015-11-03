@@ -91,7 +91,7 @@
 		<div style="width:100%;float:right">
 		<form action = "/alert/" method = "post">
 		<center><br><br><br><br><br><br><br><br><br>
-			<select name = "disease" placeholder = "Select condition" style = "width:800px">
+			<select name = "disease" placeholder = "Select condition" style = "width:400px">
 				<option value = "lung cancer">Lung Cancer</option>
 				<option value = "heart disease">Heart Disease</option>
 				<option vale = "asthma">Asthma</option>
@@ -100,7 +100,7 @@
 			<input type = "hidden" name="aqi" value="{{pm}}">
 			{% csrf_token %}
 			<input type = "submit" value = "Choose">
-		</form>
+		</form><br>
 		<text>{{ alert }}</text>
 		</div>
 	</body>

@@ -30,18 +30,29 @@
 
             input[type="text"]
             {
-                width : 200px;
-                height : 6vh;
-                font-size : 3vh;
+                width : 4vh;
+                height : 3vh;
+                font-size : 2vh;
             }
 
+			input[type="submit"]
+            {
+                width : 6vw;
+                height : 5vh;
+                font-size : 3vh;
+            }
+			
             img
             {
                 height : 200px;
                 width : 200px;
             }
+            
+            select {coorl:black}
 
             a,text { font-size : 4vh; color : #FF9900;}
+            
+            option {font-size:3vh; color:black;}
 
 
             lesson {color : #FF6600;}
@@ -68,7 +79,7 @@
 		<div style = "width:50%;float:right">
 				<text>Weather details:</text>
 					<table>
-						{% for key, val in weather %}
+						{% for key, val in weather.items %}
 							<tr>
 								<td>{{ key }}</td>
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -76,6 +87,21 @@
 							</tr>
 						{% endfor %}
 					</table>
+		</div>
+		<div style="width:100%;float:right">
+		<form action = "/alert/" method = "post">
+		<center><br><br><br><br><br><br><br><br><br>
+			<select name = "disease" placeholder = "Select condition" style = "width:800px">
+				<option value = "lung cancer">Lung Cancer</option>
+				<option value = "heart disease">Heart Disease</option>
+				<option vale = "asthma">Asthma</option>
+			</select>
+			<br>
+			<input type = "hidden" name="aqi" value="{{pm}}">
+			{% csrf_token %}
+			<input type = "submit" value = "Choose">
+		</form>
+		<text>{{ alert }}</text>
 		</div>
 	</body>
 </html>

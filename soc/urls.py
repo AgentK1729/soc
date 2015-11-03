@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'soc.alerts.views.home'),
     url(r'^profile/', 'soc.alerts.views.profile'),
+    url(r'^alert/', 'soc.alerts.views.alert'),
 )

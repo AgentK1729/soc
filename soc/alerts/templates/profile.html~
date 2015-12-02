@@ -109,7 +109,7 @@
 		<br><br><br>
 		<div style="width:100%;float:right">
 		<center>
-		<reco><u>Our Recommendation:</u> <b>{{ alert }}</b></reco>
+		<reco><u>Our Recommendation:</u> &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ alert }}</b></reco>
 		</center>
 		</div>
 	</body>

@@ -53,29 +53,10 @@ def profile(request):
 		if minO > d.ozone:
 			minO = d.ozone
 	
-	if minPM < currPM or minO < currO
+	if minPM < currPM or minO < currO:
+		alert = "Do not step out"
 	 
 	return render(request, "profile.html", {'user':request.session['user'], 'aqis':d, 'weather':j[j.keys()[-1]], 'pm':obj['AQI'], 'alert':alert, 'diseases':diseases})
-	
-	
-def alert(request):
-	global alert
-	if request.POST['disease'] == 'lung cancer':
-		if int(request.POST['aqi']) < 50:	
-			alert = "It's not safe to step out"
-		else:	
-			alert = "It's safe to step out"	
-	elif request.POST['disease'] == 'heart disease':
-		if int(request.POST['aqi']) > 50 and int(request.POST['aqi']) < 100:	
-			alert = "It's not safe to step out"
-		else:	
-			alert = "It's safe to step out"		
-	elif request.POST['disease'] == 'asthma':
-		if int(request.POST['aqi']) > 100:	
-			alert = "It's not safe to step out"
-		else:	
-			alert = "It's safe to step out"
-	return HttpResponseRedirect ("/profile/")
 	
 def register(request):
 	for key in request.GET.keys():

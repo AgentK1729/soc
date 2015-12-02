@@ -58,26 +58,6 @@ def profile(request):
 	 
 	return render(request, "profile.html", {'user':request.session['user'], 'aqis':d, 'weather':j[j.keys()[-1]], 'pm':obj['AQI'], 'alert':alert, 'diseases':diseases})
 	
-	
-def alert(request):
-	global alert
-	if request.POST['disease'] == 'lung cancer':
-		if int(request.POST['aqi']) < 50:	
-			alert = "It's not safe to step out"
-		else:	
-			alert = "It's safe to step out"	
-	elif request.POST['disease'] == 'heart disease':
-		if int(request.POST['aqi']) > 50 and int(request.POST['aqi']) < 100:	
-			alert = "It's not safe to step out"
-		else:	
-			alert = "It's safe to step out"		
-	elif request.POST['disease'] == 'asthma':
-		if int(request.POST['aqi']) > 100:	
-			alert = "It's not safe to step out"
-		else:	
-			alert = "It's safe to step out"
-	return HttpResponseRedirect ("/profile/")
-	
 def register(request):
 	for key in request.GET.keys():
 		try:
@@ -97,6 +77,13 @@ def diseases(request):
 	diseases = Disease.objects.all()
 	serializer = DiseaseSerializer(diseases, many=True)
 	return Response(serializer.data)
+	
+def logout(request):
+	try:
+		del request.session['user']
+	except:
+		pass
+	return HttpResponseRedirect("/")
 		
 		
 		

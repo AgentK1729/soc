@@ -5,6 +5,21 @@ from forms import *
 from django.contrib.auth.models import User
 from urllib2 import urlopen
 from json import load, dumps
+from models import *
+from serializers import *
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+global alert
+alert = ""
+
+class JSONResponse(HttpResponse):
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
 
 def home(request):
 	if request.method == 'GET':
@@ -19,16 +34,77 @@ def home(request):
 			
 		
 def profile(request):
+	global alert
 	u = urlopen('http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=21030&distance=100&API_KEY=40660235-9B2E-474F-B531-15EAB3B68EE0')
 	j = load(u)
+	diseases = ["Asthma", "Chronic Bronchitis", "Emphysema", "Coronary Diseases", "Lung Diseases"]
 	d = {}
 	for obj in j:
 		 d[obj['ParameterName']] = obj['AQI']
+	currPM, currO = d['PM2.5'], d['O3']	
 	u = urlopen('http://agentk.pythonanywhere.com/weather')
 	j = load(u)
-	return render(request, "profile.html", {'user':request.session['user'], 'aqis':d, 'weather':j[j.keys()[-1]], 'pm':obj['AQI']})
+	a = Affliction.objects.filter(user=request.session['user'])
+	minPM, minO, minAQI = 9999, 9999, 9999
+	for i in a:
+		d = Disease.objects.get(disease=i.disease)
+		if minPM > d.pm:
+			minPM = d.pm
+		if minO > d.ozone:
+			minO = d.ozone
+	
+	if minPM < currPM or minO < currO
+	 
+	return render(request, "profile.html", {'user':request.session['user'], 'aqis':d, 'weather':j[j.keys()[-1]], 'pm':obj['AQI'], 'alert':alert, 'diseases':diseases})
 	
 	
 def alert(request):
-	if int(request.POST['disease']) == 'lung cancer':
-		alert = "
+	global alert
+	if request.POST['disease'] == 'lung cancer':
+		if int(request.POST['aqi']) < 50:	
+			alert = "It's not safe to step out"
+		else:	
+			alert = "It's safe to step out"	
+	elif request.POST['disease'] == 'heart disease':
+		if int(request.POST['aqi']) > 50 and int(request.POST['aqi']) < 100:	
+			alert = "It's not safe to step out"
+		else:	
+			alert = "It's safe to step out"		
+	elif request.POST['disease'] == 'asthma':
+		if int(request.POST['aqi']) > 100:	
+			alert = "It's not safe to step out"
+		else:	
+			alert = "It's safe to step out"
+	return HttpResponseRedirect ("/profile/")
+	
+def register(request):
+	for key in request.GET.keys():
+		try:
+			Affliction(user=request.session['user'], disease=key).save()
+		except:
+			pass
+	return HttpResponseRedirect("/profile/")
+
+@api_view(['GET'])	
+def afflictions(request):
+	afflictions = Affliction.objects.filter(user=request.session['user'])
+	serializer = AfflictionSerializer(afflictions, many=True)
+	return Response(serializer.data)
+		
+@api_view(['GET'])		
+def diseases(request):
+	diseases = Disease.objects.all()
+	serializer = DiseaseSerializer(diseases, many=True)
+	return Response(serializer.data)
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

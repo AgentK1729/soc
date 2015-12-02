@@ -42,6 +42,12 @@
                 font-size : 3vh;
             }
 			
+			error
+        {
+            font-size : 3.5vh;
+            color : white;
+        }
+			
             img
             {
                 height : 200px;
@@ -51,6 +57,8 @@
             select {color:black; font-size:4vh}
 
             a,text { font-size : 4vh; color : #FF9900;}
+            
+            reco { font-size : 4vh; color : white;}
             
             option {font-size:4vh;color:black;}
 
@@ -75,6 +83,16 @@
 							</tr>
 						{% endfor %}
 					</table>
+			<br><br>
+			<form action = "/register/" method = "get">
+      {% for d in diseases %}
+      	<input type="checkbox" name="{{d}}"><error>{{d}}</error><br>
+      {% endfor %}
+      <input type = "submit" value = "Register" class="btn btn-primary btn-lg" style="height:70px;width:150px">
+    </form>
+    <br><br>
+    <a href = '/view-afflictions/'>View Afflictions</a><br><br>
+    <a href = '/view-diseases/'>View Disease Information</a>
 		</div>
 		<div style = "width:50%;float:right">
 				<text>Weather details:</text>
@@ -88,20 +106,11 @@
 						{% endfor %}
 					</table>
 		</div>
+		<br><br><br>
 		<div style="width:100%;float:right">
-		<form action = "/alert/" method = "post">
-		<center><br><br><br><br><br><br><br><br><br>
-			<select name = "disease" placeholder = "Select condition" style = "width:400px">
-				<option value = "lung cancer">Lung Cancer</option>
-				<option value = "heart disease">Heart Disease</option>
-				<option vale = "asthma">Asthma</option>
-			</select>
-			<br>
-			<input type = "hidden" name="aqi" value="{{pm}}">
-			{% csrf_token %}
-			<input type = "submit" value = "Choose">
-		</form><br>
-		<text>{{ alert }}</text>
+		<center>
+		<reco><u>Our Recommendation:</u> &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ alert }}</b></reco>
+		</center>
 		</div>
 	</body>
 </html>

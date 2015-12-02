@@ -13,9 +13,14 @@ class PollutantionData(models.Model):
 class Affliction(models.Model):
 	user = models.CharField(max_length=30)
 	disease = models.CharField(max_length=30)
+	class Meta:
+		unique_together = (('user', 'disease'))
 	
 class Disease(models.Model):
 	disease = models.CharField(max_length=30, primary_key=True)
 	aqi = models.IntegerField(max_length=3)
+	pm = models.FloatField(max_length=5)
+	ozone = models.FloatField(max_length=5)
 	
 admin.site.register(Affliction)
+admin.site.register(Disease)

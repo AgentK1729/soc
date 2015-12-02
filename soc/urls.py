@@ -10,4 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', 'soc.alerts.views.home'),
     url(r'^profile/', 'soc.alerts.views.profile'),
     url(r'^alert/', 'soc.alerts.views.alert'),
+    url(r'^register/', 'soc.alerts.views.register'),
+    url(r'^view-afflictions/', 'soc.alerts.views.afflictions'),
+    url(r'^view-diseases/', 'soc.alerts.views.diseases'),
 )

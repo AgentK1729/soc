@@ -1,5 +1,5 @@
 <html>
-  <head><title>Login</title>
+  <head><title>Signup</title>
     <link rel="stylesheet" href="http://crowdcoach.pythonanywhere.com/static/style.css">
     <script src = "http://crowdcoach.pythonanywhere.com/static/jquery.js"></script>
 
@@ -52,7 +52,7 @@
       {% csrf_token %}
       <input type = "submit" value = "Login" name = "login" class="btn btn-primary btn-lg">
     </form>
-    <br><a href = "/signup/">Sign Up</a><br>
+    <br><a href = "/login/">Log In</a><br>
     <error>{{ error }}</error>
     </div>
 

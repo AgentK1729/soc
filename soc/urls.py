@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'soc.alerts.views.home'),
+    url(r'^signup/', 'soc.alerts.views.signup'),
     url(r'^profile/', 'soc.alerts.views.profile'),
     url(r'^register/', 'soc.alerts.views.register'),
     url(r'^view-afflictions/', 'soc.alerts.views.afflictions'),

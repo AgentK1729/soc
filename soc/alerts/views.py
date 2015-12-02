@@ -32,6 +32,21 @@ def home(request):
 		else:	
 			return render(request, "home.html", {'error':'Either the username or the password is incorrect', 'form':LoginForm()})
 			
+
+def signup(request):
+	if request.method == "GET":
+		return render(request, "signup.html", {'form':SignupForm()})
+	elif request.method == "POST":
+		try:
+			u = User.objects.get(username=request.POST['username'])
+			return render(request, "signup.html", {'form':SignupForm(), 'error':'User is already registered'})
+		except User.DoesNotExist:
+			if request.POST['password'] == request.POST['confirm']:
+				User(username=request.POST['username'], password=request.POST['password']).save()
+				return render(request, "signup.html", {'form':SignupForm(), 'error':'User registered. Please log in to continue'})
+			else:
+				return render(request, "signup.html", {'form':SignupForm(), 'error':"Passwords don't match"})
+
 		
 def profile(request):
 	global alert

@@ -4,8 +4,11 @@ class PollutantionData(models.Model):
 	name = models.CharField(max_length=5)
 	date = models.DateField()
 	DAILY_AQI_VALUE = models.IntegerField(max_length=2)
-	STATE = models.CharField(max_length=2)
 	COUNTY_CODE = models.IntegerField(max_length=2)
-	COUNTY = ''
-	SITE_LATITUDE = 0.0
-	SITE_LONGITUDE = 0.0
+	COUNTY = models.IntegerField(max_length=2)
+	SITE_LATITUDE = models.FloatField(max_length=5)
+	SITE_LONGITUDE = models.FloatField(max_length=5)
+	
+class Disease(models.Model):
+	user = models.CharField(max_length=30)
+	disease = models.CharField(max_length=30)

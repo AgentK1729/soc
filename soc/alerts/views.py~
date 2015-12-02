@@ -41,7 +41,7 @@ def profile(request):
 	d = {}
 	for obj in j:
 		 d[obj['ParameterName']] = obj['AQI']
-	currPM, currO = d['PM2.5'], d['O3']	
+	currPM, currO = d['PM2.5'], d['O3']
 	u = urlopen('http://agentk.pythonanywhere.com/weather')
 	j = load(u)
 	a = Affliction.objects.filter(user=request.session['user'])
@@ -77,6 +77,13 @@ def diseases(request):
 	diseases = Disease.objects.all()
 	serializer = DiseaseSerializer(diseases, many=True)
 	return Response(serializer.data)
+	
+def logout(request):
+	try:
+		del request.session['user']
+	except:
+		pass
+	return HttpResponseRedirect("/")
 		
 		
 		

@@ -41,17 +41,17 @@ def profile(request):
 	d = {}
 	for obj in j:
 		 d[obj['ParameterName']] = obj['AQI']
-	currPM, currO = d['PM2.5'], d['O3']	
+	currPM, currO = d['PM2.5'], d['O3']
 	u = urlopen('http://agentk.pythonanywhere.com/weather')
 	j = load(u)
 	a = Affliction.objects.filter(user=request.session['user'])
 	minPM, minO, minAQI = 9999, 9999, 9999
 	for i in a:
-		d = Disease.objects.get(disease=i.disease)
-		if minPM > d.pm:
-			minPM = d.pm
-		if minO > d.ozone:
-			minO = d.ozone
+		dis = Disease.objects.get(disease=i.disease)
+		if minPM > dis.pm:
+			minPM = dis.pm
+		if minO > dis.ozone:
+			minO = dis.ozone
 	
 	if minPM < currPM or minO < currO:
 		alert = "Do not step out"

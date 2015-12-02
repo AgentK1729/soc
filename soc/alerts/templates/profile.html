@@ -88,6 +88,7 @@
       {% for d in diseases %}
       	<input type="checkbox" name="{{d}}"><error>{{d}}</error><br>
       {% endfor %}
+      <br>
       <input type = "submit" value = "Register" class="btn btn-primary btn-lg" style="height:70px;width:150px">
     </form>
     <br><br>
@@ -105,13 +106,12 @@
 								<td>{{ val }}</td>
 							</tr>
 						{% endfor %}
-					</table>
+					</table><br><br><br><br><br><br>
+		<reco><u>Our Recommendation:</u> &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ alert }}</b></reco>
 		</div>
 		<br><br><br>
 		<div style="width:100%;float:right">
-		<center>
-		<reco><u>Our Recommendation:</u> &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ alert }}</b></reco>
-		</center>
+		
 		</div>
 	</body>
 </html>

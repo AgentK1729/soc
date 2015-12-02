@@ -92,7 +92,8 @@
     </form>
     <br><br>
     <a href = '/view-afflictions/'>View Afflictions</a><br><br>
-    <a href = '/view-diseases/'>View Disease Information</a>
+    <a href = '/view-diseases/'>View Disease Information</a><br><br>
+    <a href = '/logout/'>Log out</a>
 		</div>
 		<div style = "width:50%;float:right">
 				<text>Weather details:</text>
@@ -104,13 +105,12 @@
 								<td>{{ val }}</td>
 							</tr>
 						{% endfor %}
-					</table>
+					</table><br><br><br><br><br><br>
+		<reco><u>Our Recommendation:</u> &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ alert }}</b></reco>
 		</div>
 		<br><br><br>
 		<div style="width:100%;float:right">
-		<center>
-		<reco><u>Our Recommendation:</u> &nbsp;&nbsp;&nbsp;&nbsp;<b>{{ alert }}</b></reco>
-		</center>
+		
 		</div>
 	</body>
 </html>
